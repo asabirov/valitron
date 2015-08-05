@@ -875,7 +875,7 @@ class Validator
 
                 $result = true;
                 foreach ($values as $value) {
-                    $result = $result && call_user_func($callback, $field, $value, $v['params']);
+                    $result = $result && call_user_func($callback, $field, $value, $v['params'], $this->_fields);
                 }
 
                 if (!$result) {
@@ -952,7 +952,7 @@ class Validator
             'rule' => $rule,
             'fields' => (array) $fields,
             'params' => (array) $params,
-            'message' => '{field} ' . $message
+            'message' => mb_ucfirst($message, 'UTF-8')
         );
 
         return $this;
